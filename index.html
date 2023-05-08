@@ -270,7 +270,7 @@ The data pre-processing begins with the removal of special characters from the t
 <!-- <div class="warning"><pre class="knitr r">## Warning in tm_map.SimpleCorpus(pm_corpus, PlainTextDocument): transformation -->
 <!-- ## drops documents -->
 </pre></div>
-<div class="source"><pre class="knitr r"><span class="hl com"># Convert the text to lower case</span>
+<div class="source"><pre class="knitr r"><span class="hl com">#text to lower case</span>
 <span class="hl std">pm_corpus</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">tm_map</span><span class="hl std">(pm_corpus,</span> <span class="hl kwd">content_transformer</span><span class="hl std">(tolower))</span>
 </pre></div>
 <!-- <div class="warning"><pre class="knitr r">## Warning in tm_map.SimpleCorpus(pm_corpus, content_transformer(tolower)): -->
@@ -282,7 +282,7 @@ The data pre-processing begins with the removal of special characters from the t
 <!-- <div class="warning"><pre class="knitr r">## Warning in tm_map.SimpleCorpus(pm_corpus, removeNumbers): transformation drops -->
 <!-- ## documents -->
 </pre></div>
-<div class="source"><pre class="knitr r"><span class="hl com"># Remove english common stopwords</span>
+<div class="source"><pre class="knitr r"><span class="hl com"># Remove stopwords</span>
 <span class="hl std">pm_corpus</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">tm_map</span><span class="hl std">(pm_corpus, removeWords,</span> <span class="hl kwd">stopwords</span><span class="hl std">(</span><span class="hl str">&quot;english&quot;</span><span class="hl std">))</span>
 </pre></div>
 <!-- <div class="warning"><pre class="knitr r">## Warning in tm_map.SimpleCorpus(pm_corpus, removeWords, stopwords(&quot;english&quot;)): -->
@@ -294,13 +294,13 @@ The data pre-processing begins with the removal of special characters from the t
 <!-- <div class="warning"><pre class="knitr r">## Warning in tm_map.SimpleCorpus(pm_corpus, removePunctuation): transformation -->
 <!-- ## drops documents -->
 </pre></div>
-<div class="source"><pre class="knitr r"><span class="hl com"># Eliminate extra white spaces</span>
+<div class="source"><pre class="knitr r"><span class="hl com"># Remove white spaces</span>
 <span class="hl std">pm_corpus</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">tm_map</span><span class="hl std">(pm_corpus, stripWhitespace)</span>
 </pre></div>
 <!-- <div class="warning"><pre class="knitr r">## Warning in tm_map.SimpleCorpus(pm_corpus, stripWhitespace): transformation drops -->
 <!-- ## documents -->
 </pre></div>
-<div class="source"><pre class="knitr r"><span class="hl com"># Text stemming - which reduces words to their root form</span>
+<div class="source"><pre class="knitr r"><span class="hl com"># Stemming - words into root form</span>
 <span class="hl std">pm_corpus</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">tm_map</span><span class="hl std">(pm_corpus, stemDocument)</span>
 </pre></div>
 <!-- <div class="warning"><pre class="knitr r">## Warning in tm_map.SimpleCorpus(pm_corpus, stemDocument): transformation drops -->
@@ -318,14 +318,14 @@ The data pre-processing begins with the removal of special characters from the t
 <p>
 The TDM is a table containing the frequency of words that are part of the text. In the process, we will compute the frequencies at which each word occurs in the speech delivered by the prime minister. Using this, we can identify most frequent and trending excerpts from the text. A table comprising the top 10 frequently used words can be displayed and the same can visualized on a bar graph as well. </p>
 
-<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># Build a term-document matrix</span>
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># Generate a term-document matrix</span>
 <span class="hl std">pmcorpus_dtm</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">TermDocumentMatrix</span><span class="hl std">(pm_corpus)</span>
 <span class="hl std">pmcorpus_sparse</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">removeSparseTerms</span><span class="hl std">(pmcorpus_dtm,</span><span class="hl num">0.99</span><span class="hl std">)</span>
 <span class="hl std">dtm_m</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">as.matrix</span><span class="hl std">(pmcorpus_sparse)</span>
-<span class="hl com"># Sort by decreasing value of frequency</span>
+<span class="hl com"># Arrange according decreasing value of frequency</span>
 <span class="hl std">dtm_v</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sort</span><span class="hl std">(</span><span class="hl kwd">rowSums</span><span class="hl std">(dtm_m),</span><span class="hl kwc">decreasing</span><span class="hl std">=</span><span class="hl num">TRUE</span><span class="hl std">)</span>
 <span class="hl std">dtm_d</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwc">word</span> <span class="hl std">=</span> <span class="hl kwd">names</span><span class="hl std">(dtm_v),</span><span class="hl kwc">freq</span><span class="hl std">=dtm_v)</span>
-<span class="hl com"># Display the top 5 most frequent words</span>
+<span class="hl com"># Display the top 10 most frequent words</span>
 <span class="hl kwd">head</span><span class="hl std">(dtm_d,</span> <span class="hl num">10</span><span class="hl std">)</span>
 </pre></div>
 <div class="output"><pre class="knitr r">##            word freq
@@ -415,15 +415,15 @@ Sentiments or emotions can be categorized into neutral, positive or negative. It
 
 <p>The above mentioned methods determine emotions using different scales and often provide different analysis and insights</p>
 
-<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># regular sentiment score using get_sentiment() function and method of your choice</span>
-<span class="hl com"># please note that different methods may have different scales</span>
+<div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#sentiment score using get_sentiment() function </span>
+<span class="hl com">#different methods may have different scales</span>
 <span class="hl std">syuzhet_vector</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">get_sentiment</span><span class="hl std">(pmspeech,</span> <span class="hl kwc">method</span><span class="hl std">=</span><span class="hl str">&quot;syuzhet&quot;</span><span class="hl std">)</span>
-<span class="hl com"># see the first row of the vector</span>
+<span class="hl com">#first row of the vector</span>
 <span class="hl kwd">head</span><span class="hl std">(syuzhet_vector)</span>
 </pre></div>
 <div class="output"><pre class="knitr r">## [1]  0.00  0.15  1.55  0.60  0.25 -0.25
 </pre></div>
-<div class="source"><pre class="knitr r"><span class="hl com"># see summary statistics of the vector</span>
+<div class="source"><pre class="knitr r"><span class="hl com">#summary statistics of the vector</span>
 <span class="hl kwd">summary</span><span class="hl std">(syuzhet_vector)</span>
 </pre></div>
 <div class="output"><pre class="knitr r">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -464,7 +464,7 @@ We can implement the same process for bing and afinn methods as well.</p>
 <p>In these cases, the scale of the bing method is also in between -1 and +1 whereas the scale for afinn method is from -5 to +5
 </p>
 
-<p>Upon analysing the PM's speech, the bing method computed a median of 0.00, stating that the sentiments across the speech were somewhat neutral. Whereas, the afinn method prouced a median of 1, determining a positive emotion.</p>
+<p>Upon analysing the PM's speech, the bing method computed a median of 0.00, stating that the sentiments across the speech were somewhat neutral. Whereas, the afinn method produced a median of 1, determining a positive emotion.</p>
 
 <hr>
 
@@ -478,7 +478,7 @@ Through this classification, we would be able to associate the textual content w
 
 <p>This can be implemented using the get_nrc_sentiments function, which will return a data frame comprising of a number of rows determining every row from the textual content along with the frequency of every emotion occurring in the textual content.</p>
 
-<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># run nrc sentiment analysis to return data frame with each row classified as one of the following</span>
+<div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># run nrc sentiment analysis</span>
 <span class="hl com"># emotions, rather than a score: </span>
 <span class="hl com"># anger, anticipation, disgust, fear, joy, sadness, surprise, trust </span>
 <span class="hl com"># It also counts the number of positive and negative emotions found in each row</span>
@@ -502,14 +502,14 @@ Through this classification, we would be able to associate the textual content w
 
 <div class="chunk" id="unnamed-chunk-11"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#transpose</span>
 <span class="hl std">td</span><span class="hl kwb">&lt;-</span><span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwd">t</span><span class="hl std">(d))</span>
-<span class="hl com">#The function rowSums computes column sums across rows for each level of a grouping variable.</span>
+<span class="hl com">#function rowSums computes column sums across rows </span>
 <span class="hl std">td_new</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">data.frame</span><span class="hl std">(</span><span class="hl kwd">rowSums</span><span class="hl std">(td[</span><span class="hl num">2</span><span class="hl opt">:</span><span class="hl num">175</span><span class="hl std">]))</span>
 <span class="hl com">#Transformation and cleaning</span>
 <span class="hl kwd">names</span><span class="hl std">(td_new)[</span><span class="hl num">1</span><span class="hl std">]</span> <span class="hl kwb">&lt;-</span> <span class="hl str">&quot;count&quot;</span>
 <span class="hl std">td_new</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">cbind</span><span class="hl std">(</span><span class="hl str">&quot;sentiment&quot;</span> <span class="hl std">=</span> <span class="hl kwd">rownames</span><span class="hl std">(td_new), td_new)</span>
 <span class="hl kwd">rownames</span><span class="hl std">(td_new)</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">NULL</span>
 <span class="hl std">td_new2</span><span class="hl kwb">&lt;-</span><span class="hl std">td_new[</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">10</span><span class="hl std">,]</span>
-<span class="hl com">#Plot One - count of words associated with each sentiment</span>
+<span class="hl com">#Plot One - frequency of words associated with each sentiment</span>
 <span class="hl kwd">quickplot</span><span class="hl std">(sentiment,</span> <span class="hl kwc">data</span><span class="hl std">=td_new2,</span> <span class="hl kwc">weight</span><span class="hl std">=count,</span> <span class="hl kwc">geom</span><span class="hl std">=</span><span class="hl str">&quot;bar&quot;</span><span class="hl std">,</span> <span class="hl kwc">fill</span><span class="hl std">=sentiment,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;count&quot;</span><span class="hl std">)</span><span class="hl opt">+</span><span class="hl kwd">ggtitle</span><span class="hl std">(</span><span class="hl str">&quot;Survey sentiments&quot;</span><span class="hl std">)</span>
 </pre></div>
 <!-- <div class="warning"><pre class="knitr r">## Warning: `qplot()` was deprecated in ggplot2 3.4.0. -->
@@ -517,7 +517,7 @@ Through this classification, we would be able to associate the textual content w
 </div></div>
 
 
-<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#Plot two - count of words associated with each sentiment, expressed as a percentage</span>
+<div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#Plot two - frequency of words associated with each sentiment, in terms of percentage</span>
 <span class="hl kwd">barplot</span><span class="hl std">(</span>
   <span class="hl kwd">sort</span><span class="hl std">(</span><span class="hl kwd">colSums</span><span class="hl std">(</span><span class="hl kwd">prop.table</span><span class="hl std">(d[,</span> <span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">10</span><span class="hl std">]))),</span>
   <span class="hl kwc">horiz</span> <span class="hl std">=</span> <span class="hl num">TRUE</span><span class="hl std">,</span>
