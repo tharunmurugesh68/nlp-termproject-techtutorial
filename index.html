@@ -2,6 +2,21 @@
 
 <head>
 <style type="text/css">
+div {
+  margin: 30px 30px 30px 30px;
+}
+h2 {
+  margin: 30px 30px 30px 30px;
+}
+h3 {
+  margin: 30px 30px 30px 30px;
+}
+p {
+  margin: 30px 30px 30px 30px;
+}
+img {
+  margin: 30px 30px 30px 30px;
+}
 .inline {
   background-color: #f7f7f7;
   border:solid 1px #B0B0B0;
@@ -64,65 +79,59 @@
 }
 </style>
 <title>INFO539 - NLP Final Term Project</title>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<h1>INFO539 - Statistical NLP - Technical Tutorial for Term Project</h1>
-    <h1>Analyzing Textual Content using the 'tm' package in R</h2>
-    <h2>Submitted by Tharun Murugesh Rajeswaran</h2>
-    <h2>GitHub Repository of Tech Tutorial -> <a href = "https://github.com/tharunmurugesh68/nlp-termproject-techtutorial">https://github.com/tharunmurugesh68/nlp-termproject-techtutorial</a></h2>
-<br>
+<h2 style="text-align:center;">INFO539 - Statistical NLP - Technical Tutorial for Term Project</h1>
+    <h2 style="text-align:center;">Analyzing Textual Content using the 'tm' package in R</h2>
+    <h3 style="text-align:center;">Submitted by Tharun Murugesh Rajeswaran</h2>
+    <h3 style="text-align:center;">GitHub Repository of Tech Tutorial -> <a href = "https://github.com/tharunmurugesh68/nlp-termproject-techtutorial">https://github.com/tharunmurugesh68/nlp-termproject-techtutorial</a></h2>
+
 <hr>
 
 <h2>Introduction - What is R? What is it used for?</h2>
 
-<br>
+<p>R is a programming language and an environment that facilitates statistical computing and graphics. It also provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. A plus point about R is it can generate publication-worthy high quality plots. It is also an integrated suite of software facilities for data anipulation, calculations, graphical display etc. R can be extended easily with the help of packages.</p> 
 
-<h3>R is a programming language and an environment that facilitates statistical computing and graphics. It also provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. A plus point about R is it can generate publication-worthy high quality plots. It is also an integrated suite of software facilities for data anipulation, calculations, graphical display etc. R can be extended easily with the help of packages.</h3> 
+<p>Version of R being used- 4.0.3 (2020-10-10)</p>
 
-<h3>Version of R being used- 4.0.3 (2020-10-10)</h3>
+<p>Version of RStudio being used - RStudio 2022.12.0 </p>
 
-<h3>Version of RStudio being used - RStudio 2022.12.0 </h3>
 
-<br>
 <hr>
 
 <h2>Objective</h2>
 
-<br>
 
-<h3>With the help of the 'tm' package in R, I wish to provide a tutorial on how somebody can make use of this tool for natural language processing and text mining. It is a framework for text mining applications within R. This package facilitates most functions and operations pertaining to Natural Language Processing. With this package having a lot to offer with respect to NLP, I have decided to present a technical tutorial about how one can make use of this package to learn how to analyze any textual content and derive insights from it.</h3>
 
-<h3>Something unique about my tutorial is that I will be analyzing some excerpts from political speeches and interviews delivered by former presidents and prime ministers of India. By doing so, I will get to know what the politicians mainly spoke about and sentimentally analyze the same. There are 4 sentiment extraction methods I will be using namely - syuzhet, bing, afinn and nrc. Each method makes use of different scales and hence returns different insights. Using the 'get_nrc_sentiments' function present in this package, I would be able to classify words from a sample text into different categories of emotions.</h3>
+<p>With the help of the 'tm' package in R, I wish to provide a tutorial on how somebody can make use of this tool for natural language processing and text mining. It is a framework for text mining applications within R. This package facilitates most functions and operations pertaining to Natural Language Processing. With this package having a lot to offer with respect to NLP, I have decided to present a technical tutorial about how one can make use of this package to learn how to analyze any textual content and derive insights from it.</p>
 
-<br>
+<p>Something unique about my tutorial is that I will be analyzing some excerpts from political speeches and interviews delivered by former presidents and prime ministers of India. By doing so, I will get to know what the politicians mainly spoke about and sentimentally analyze the same. There are 4 sentiment extraction methods I will be using namely - syuzhet, bing, afinn and nrc. Each method makes use of different scales and hence returns different insights. Using the 'get_nrc_sentiments' function present in this package, I would be able to classify words from a sample text into different categories of emotions.</p>
+
+
 <hr>
 
 <h2>Data Sources</h2>
 
-<br>
 
-<h3>The textual data I will be analysing a speech which was delivered by the current Prime Minister of India, Narendra Modi, during the 2016 parliamentary session. The speech was about the Goods and Services Bill (122nd Amendment) which was passed in the year 2014.</h3>
 
-<h3>Excerpts of this speech were retrieved from the Parliament of India - Lok Sabha - Digital Library.</h3>
+<p>The textual data I will be analysing a speech which was delivered by the current Prime Minister of India, Narendra Modi, during the 2016 parliamentary session. The speech was about the Goods and Services Bill (122nd Amendment) which was passed in the year 2014.</p>
 
-<h3>Speech Link -> <a href = "https://eparlib.nic.in/"> Click here to view the PM's speech - > https://eparlib.nic.in/</a> </h3>
+<p>Excerpts of this speech were retrieved from the Parliament of India - Lok Sabha - Digital Library.</p>
 
-<br>
+<p>Speech Link -> <a href = "https://eparlib.nic.in/"> Click here to view the PM's speech - > https://eparlib.nic.in/</a> </p>
+
+
 <hr>
 
 <h2>Tutorial Workflow
 </h2>
 
-<br>
 
-<h3>A tentative workflow I would be following in my technical tutorial is given below:</h3>
+
+<p>A tentative workflow I would be following in my technical tutorial is given below:</p>
 
 <ul>
 <li>Importing the textual data - Import the excerpts of speeches delivered by the politicians into readable format.</li>
@@ -140,19 +149,19 @@
 <li>Text Visualization - Visualize frequencies of words present in the content and use a word cloud to highlight most important insights from the textual content.</li>
 </ul>
 
-<br>
+
 <hr>
 
 <h2>Installing and Loading R Packages</h2>
 
-<br>
 
-<h3>
-In order to install a package into RStudio, we can use the install.packages() command with the name of the package enclosed in double quotes (" ").</h3>
 
-<h3>Once the packages are installed, it can be loaded into the R script using the library() function with the name of the package enclosed in paranthesis.</h3>
+<p>
+In order to install a package into RStudio, we can use the install.packages() command with the name of the package enclosed in double quotes (" ").</p>
 
-<h3>The packages we will be using for this tutorial are as follows: </h3>
+<p>Once the packages are installed, it can be loaded into the R script using the library() function with the name of the package enclosed in paranthesis.</p>
+
+<p>The packages we will be using for this tutorial are as follows: </p>
 
 <ul>
 <li>tm - for text mining operations (removing numbers, special characters, punctuations and stop words)</li>
@@ -199,18 +208,18 @@ In order to install a package into RStudio, we can use the install.packages() co
 </div></div>
 
 <hr>
-<br>
+
 
 <h2>Reading the data into R script</h2>
 
-<br>
 
-<h3>
-The textual file has many lines of text and since the data is not tabular, we can read the data into the R script using the readLines function. By using file.choose() withing the function, it allows the user to choose the file we want to analyse. Make sure that the file is present in your current working directory.</h3>
 
-<h3>Upon running this, a window will open asking the user to choose the file on which the analysis is to be conducted.</h3>
+<p>
+The textual file has many lines of text and since the data is not tabular, we can read the data into the R script using the readLines function. By using file.choose() withing the function, it allows the user to choose the file we want to analyse. Make sure that the file is present in your current working directory.</p>
 
-<h3>After that, we need to load the data as a corpus. A corpus is a collection of textual documents on which text mining and NLP functions are applied. </h3>
+<p>Upon running this, a window will open asking the user to choose the file on which the analysis is to be conducted.</p>
+
+<p>After that, we need to load the data as a corpus. A corpus is a collection of textual documents on which text mining and NLP functions are applied. </p>
 
 
 <div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">rm</span><span class="hl std">(</span><span class="hl kwc">list</span><span class="hl std">=</span><span class="hl kwd">ls</span><span class="hl std">())</span>
@@ -218,25 +227,25 @@ The textual file has many lines of text and since the data is not tabular, we ca
 <span class="hl std">pmspeech</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">readLines</span><span class="hl std">(</span><span class="hl str">&quot;pmgstspeech.txt&quot;</span><span class="hl std">)</span>
 </pre></div>
 <!-- <div class="warning"><pre class="knitr r">## Warning in readLines(&quot;pmgstspeech.txt&quot;): incomplete final line found on -->
-## 'pmgstspeech.txt'
+
 </pre></div>
 <div class="source"><pre class="knitr r"><span class="hl std">pm_corpus</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">Corpus</span><span class="hl std">(</span><span class="hl kwd">VectorSource</span><span class="hl std">(pmspeech))</span>
 </pre></div>
 </div></div>
 
 <hr>
-<br>
+
 
 <h2>Cleaning the textual data</h2>
 
-<br>
 
-<h3>
-The data pre-processing begins with the removal of special characters from the text like '@' , '/' etc. We can use the tm_map() function to replace it with white spaces. </h3>
 
-<h3>Next, it is necessary to remove any extra whitespaces in the textual content and convert the same into lowercase. Furthermore we need to remove stopwords from the textual content.</h3>
+<p>
+The data pre-processing begins with the removal of special characters from the text like '@' , '/' etc. We can use the tm_map() function to replace it with white spaces. </p>
 
-<h3>There is very little information to gain from these stopwords and they are the most occurring words in the data. Lastly, we need to reduce the words to its root form, with the help of stemming.</h3>
+<p>Next, it is necessary to remove any extra whitespaces in the textual content and convert the same into lowercase. Furthermore we need to remove stopwords from the textual content.</p>
+
+<p>There is very little information to gain from these stopwords and they are the most occurring words in the data. Lastly, we need to reduce the words to its root form, with the help of stemming.</p>
 
 
 <div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#Replacing &quot;/&quot;, &quot;@&quot; and &quot;|&quot; with space</span>
@@ -300,14 +309,14 @@ The data pre-processing begins with the removal of special characters from the t
 </div></div>
 
 <hr>
-<br>
+
 
 <h2>Building the TDM (Term Document Matrix)</h2>
 
-<br>
 
-<h3>
-The TDM is a table containing the frequency of words that are part of the text. In the process, we will compute the frequencies at which each word occurs in the speech delivered by the prime minister. Using this, we can identify most frequent and trending excerpts from the text. A table comprising the top 10 frequently used words can be displayed and the same can visualized on a bar graph as well. </h3>
+
+<p>
+The TDM is a table containing the frequency of words that are part of the text. In the process, we will compute the frequencies at which each word occurs in the speech delivered by the prime minister. Using this, we can identify most frequent and trending excerpts from the text. A table comprising the top 10 frequently used words can be displayed and the same can visualized on a bar graph as well. </p>
 
 <div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># Build a term-document matrix</span>
 <span class="hl std">pmcorpus_dtm</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">TermDocumentMatrix</span><span class="hl std">(pm_corpus)</span>
@@ -338,38 +347,38 @@ The TDM is a table containing the frequency of words that are part of the text. 
         <span class="hl kwc">col</span> <span class="hl std">=</span><span class="hl str">&quot;lightblue&quot;</span><span class="hl std">,</span> <span class="hl kwc">main</span> <span class="hl std">=</span><span class="hl str">&quot;Top 10 most frequent words in speech&quot;</span><span class="hl std">,</span>
         <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Word frequencies&quot;</span><span class="hl std">)</span>
 </pre></div>
-</div><div class="rimage default"><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div></div>
-
-<h3>From the bar plot we can notice that 'will' was the most frequent word being used in his speech. Since the speech was about GST and tax, they were mentioned quite often by the PM during his speech.</h3>
+</div></div>
+<img src="top10freq.jpeg" style="width:500px;height:325px;">
+<p>From the bar plot we can notice that 'will' was the most frequent word being used in his speech. Since the speech was about GST and tax, they were mentioned quite often by the PM during his speech.</p>
 
 <hr>
-<br>
+
 
 <h2>Building a Word Cloud</h2>
 
-<br>
 
-<h3>
-It is a method used to visualize and analyse textual qualitative data. It comprises of a image containing the keywords found within a text, in which a word's frequency is determined by the size of the key word. We will be using the frequency dataframe previously generated to build the word cloud. </h3>
+
+<p>
+It is a method used to visualize and analyse textual qualitative data. It comprises of a image containing the keywords found within a text, in which a word's frequency is determined by the size of the key word. We will be using the frequency dataframe previously generated to build the word cloud. </p>
 
 <div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#generate word cloud</span>
 <span class="hl kwd">set.seed</span><span class="hl std">(</span><span class="hl num">1234</span><span class="hl std">)</span>
 <span class="hl kwd">wordcloud</span><span class="hl std">(</span><span class="hl kwc">words</span> <span class="hl std">= dtm_d</span><span class="hl opt">$</span><span class="hl std">word,</span><span class="hl kwc">freq</span> <span class="hl std">= dtm_d</span><span class="hl opt">$</span><span class="hl std">freq,</span><span class="hl kwc">random.order</span><span class="hl std">=</span><span class="hl num">FALSE</span><span class="hl std">,</span> <span class="hl kwc">rot.per</span><span class="hl std">=</span><span class="hl num">0.35</span><span class="hl std">,</span>
           <span class="hl kwc">colors</span><span class="hl std">=</span><span class="hl kwd">brewer.pal</span><span class="hl std">(</span><span class="hl num">8</span><span class="hl std">,</span> <span class="hl str">&quot;Dark2&quot;</span><span class="hl std">))</span>
 </pre></div>
-</div><div class="rimage default"><img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div></div>
-
-<h3>Upon analysing the PM's speech, we got to know that words such as gst, state, money, tax, system, will, bill etc. were often mentioned. </h3>
+</div></div>
+<img src="wordcloud.JPG" style="width:500px;height:400px;">
+<p>Upon analysing the PM's speech, we got to know that words such as gst, state, money, tax, system, will, bill etc. were often mentioned. </p>
 
 <hr>
-<br>
+
 
 <h2>Associating Words</h2>
 
-<br>
 
-<h3>
-This process is useful for understanding the relationship between words in a corpus and what words have the strongest relationship with each other. It can also determine the strength of variabe pairs. This can be implemented using the findAssocs() function.</h3>
+
+<p>
+This process is useful for understanding the relationship between words in a corpus and what words have the strongest relationship with each other. It can also determine the strength of variabe pairs. This can be implemented using the findAssocs() function.</p>
 
 <div class="chunk" id="unnamed-chunk-7"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># Find associations </span>
 <span class="hl kwd">findAssocs</span><span class="hl std">(pmcorpus_dtm,</span> <span class="hl kwc">terms</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;corrupt&quot;</span><span class="hl std">,</span><span class="hl str">&quot;tax&quot;</span><span class="hl std">),</span> <span class="hl kwc">corlimit</span> <span class="hl std">=</span> <span class="hl num">0.25</span><span class="hl std">)</span>
@@ -390,21 +399,21 @@ This process is useful for understanding the relationship between words in a cor
 </pre></div>
 </div></div>
 
-<h3>Since the PM's speech is related to finance, GST, tax and commerce, we want to analyse how the speech is related to corruption and tax. Upon analysing the PM's speech, we got to understand that the PM has highlighted the importance of bringing an order/discipline in finance. He also wished to eradicate and end corruption through his speech. Regarding taxes, the PM spoke about benefits for tax payers, the current economic situation, tax exemptions, taxes levied on fruits and vegetables.</h3>
+<p>Since the PM's speech is related to finance, GST, tax and commerce, we want to analyse how the speech is related to corruption and tax. Upon analysing the PM's speech, we got to understand that the PM has highlighted the importance of bringing an order/discipline in finance. He also wished to eradicate and end corruption through his speech. Regarding taxes, the PM spoke about benefits for tax payers, the current economic situation, tax exemptions, taxes levied on fruits and vegetables.</p>
 
 <hr>
-<br>
+
 
 <h2>Sentiment Scoring</h2>
 
-<br>
 
-<h3>
-Sentiments or emotions can be categorized into neutral, positive or negative. It can be determined numerically, to express the range of negative or positive strength of the text's sentiment.</h3>
 
-<h3>This can be achieved using the syuzhet package. It is used to compute emotion scores by implementing four different emotion dictionaries, each offering a different method of emotion scoring. The 4 methods are syuzhet, bing, afinn and nrc.</h3>
+<p>
+Sentiments or emotions can be categorized into neutral, positive or negative. It can be determined numerically, to express the range of negative or positive strength of the text's sentiment.</p>
 
-<h3>The above mentioned methods determine emotions using different scales and often provide different analysis and insights</h3>
+<p>This can be achieved using the syuzhet package. It is used to compute emotion scores by implementing four different emotion dictionaries, each offering a different method of emotion scoring. The 4 methods are syuzhet, bing, afinn and nrc.</p>
+
+<p>The above mentioned methods determine emotions using different scales and often provide different analysis and insights</p>
 
 <div class="chunk" id="unnamed-chunk-8"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># regular sentiment score using get_sentiment() function and method of your choice</span>
 <span class="hl com"># please note that different methods may have different scales</span>
@@ -422,11 +431,11 @@ Sentiments or emotions can be categorized into neutral, positive or negative. It
 </pre></div>
 </div></div>
 
-<h3>The Syuzhet vector shows that the first element has the value of 0.00, meaning that the sum of the emotion scores of every meaningful word in the first line add up to 0.00. The syuzhet method's scale is decimal and ranges from -1(most negative) to +1(most positive). Summary statistics of the suyzhet vector show a median value of 0.65, which is above zero. The overall average sentiment across the entire text is positive.
-</h3>
+<p>The Syuzhet vector shows that the first element has the value of 0.00, meaning that the sum of the emotion scores of every meaningful word in the first line add up to 0.00. The syuzhet method's scale is decimal and ranges from -1(most negative) to +1(most positive). Summary statistics of the suyzhet vector show a median value of 0.65, which is above zero. The overall average sentiment across the entire text is positive.
+</p>
 
-<h3>
-We can implement the same process for bing and afinn methods as well.</h3>
+<p>
+We can implement the same process for bing and afinn methods as well.</p>
 
 <div class="chunk" id="unnamed-chunk-9"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># bing</span>
 <span class="hl std">bing_vector</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">get_sentiment</span><span class="hl std">(pmspeech,</span> <span class="hl kwc">method</span><span class="hl std">=</span><span class="hl str">&quot;bing&quot;</span><span class="hl std">)</span>
@@ -452,22 +461,22 @@ We can implement the same process for bing and afinn methods as well.</h3>
 </pre></div>
 </div></div>
 
-<h3>In these cases, the scale of the bing method is also in between -1 and +1 whereas the scale for afinn method is from -5 to +5
-</h3>
+<p>In these cases, the scale of the bing method is also in between -1 and +1 whereas the scale for afinn method is from -5 to +5
+</p>
 
-<h3>Upon analysing the PM's speech, the bing method computed a median of 0.00, stating that the sentiments across the speech were somewhat neutral. Whereas, the afinn method prouced a median of 1, determining a positive emotion.</h3>
+<p>Upon analysing the PM's speech, the bing method computed a median of 0.00, stating that the sentiments across the speech were somewhat neutral. Whereas, the afinn method prouced a median of 1, determining a positive emotion.</p>
 
 <hr>
-<br>
+
 
 <h2>Sentiment Classification</h2>
 
-<br>
 
-<h3>
-Through this classification, we would be able to associate the textual content with eight basic emotions - anger, fear, anticipation, trust, surprise, sadness, joy and disgust ; along with two sentiments - positive and negative.</h3>
 
-<h3>This can be implemented using the get_nrc_sentiments function, which will return a data frame comprising of a number of rows determining every row from the textual content along with the frequency of every emotion occurring in the textual content.</h3>
+<p>
+Through this classification, we would be able to associate the textual content with eight basic emotions - anger, fear, anticipation, trust, surprise, sadness, joy and disgust ; along with two sentiments - positive and negative.</p>
+
+<p>This can be implemented using the get_nrc_sentiments function, which will return a data frame comprising of a number of rows determining every row from the textual content along with the frequency of every emotion occurring in the textual content.</p>
 
 <div class="chunk" id="unnamed-chunk-10"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># run nrc sentiment analysis to return data frame with each row classified as one of the following</span>
 <span class="hl com"># emotions, rather than a score: </span>
@@ -505,7 +514,8 @@ Through this classification, we would be able to associate the textual content w
 </pre></div>
 <!-- <div class="warning"><pre class="knitr r">## Warning: `qplot()` was deprecated in ggplot2 3.4.0. -->
 </pre></div>
-</div><div class="rimage default"><img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" class="plot" /></div></div>
+</div></div>
+
 
 <div class="chunk" id="unnamed-chunk-12"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#Plot two - count of words associated with each sentiment, expressed as a percentage</span>
 <span class="hl kwd">barplot</span><span class="hl std">(</span>
@@ -516,38 +526,39 @@ Through this classification, we would be able to associate the textual content w
   <span class="hl kwc">main</span> <span class="hl std">=</span> <span class="hl str">&quot;Emotions in Text&quot;</span><span class="hl std">,</span> <span class="hl kwc">xlab</span><span class="hl std">=</span><span class="hl str">&quot;Percentage&quot;</span>
 <span class="hl std">)</span>
 </pre></div>
-</div><div class="rimage default"><img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" class="plot" /></div></div>
+</div></div>
+<img src="surveyquickplot.jpeg" style="width:500px;height:250px;">
 
-<h3>Upon analysing the PM's speech and taking the first line for example - </h3>
+<p>Upon analysing the PM's speech and taking the first line for example - </p>
 
-<h3>We get to observe two occurrences of words that are associated with an anticipative emotion and a positive sentiment ; one occurrence each for anger, fear, sadness, surprise, trust and negative emotions. No occurrences of disgust and joyful emotions.
+<p>We get to observe two occurrences of words that are associated with an anticipative emotion and a positive sentiment ; one occurrence each for anger, fear, sadness, surprise, trust and negative emotions. No occurrences of disgust and joyful emotions.
 
-</h3>
+</p>
 
-<h3>
-Such frequencies can be visualized graphically using bar plots. It will helpful to analyse the emotions the speech conveys. </h3>
+<p>
+Such frequencies can be visualized graphically using bar plots. It will helpful to analyse the emotions the speech conveys. </p>
 
-<h3>From the bar plot, it can be inferred that the PM's speech had a positive effect on listeners on around 250 instances. The PM through his speech invoked a sense of trust which can be seen on around 175 instances. But due to the GST scheme being put into law by the government, the PM's speech was not welcomed by some listeners, as it can be highlighted in around 125 instances. For those who are neutral, around 85 instances highlight their anticipation as in looking forward to long-term benefits of the GST scheme.
-</h3>
+<p>From the bar plot, it can be inferred that the PM's speech had a positive effect on listeners on around 250 instances. The PM through his speech invoked a sense of trust which can be seen on around 175 instances. But due to the GST scheme being put into law by the government, the PM's speech was not welcomed by some listeners, as it can be highlighted in around 125 instances. For those who are neutral, around 85 instances highlight their anticipation as in looking forward to long-term benefits of the GST scheme.
+</p>
 
-<h3>The same can be visualized in terms of percentage. The words used by the prime minister were associated to a positive sentiment by more than 25%. There were less signs of disguts as his speech less than 5% of it.
-</h3>
-
-<h3>Overall, words associated with the emotions of “positive” and “trust” account for almost 45% of the words in the text, that can be inferred as a positive response from the listeners.
-</h3>
+<p>The same can be visualized in terms of percentage. The words used by the prime minister were associated to a positive sentiment by more than 25%. There were less signs of disguts as his speech less than 5% of it.
+</p>
+<img src="emotionpercent.jpeg" style="width:500px;height:400px;">
+<p>Overall, words associated with the emotions of “positive” and “trust” account for almost 45% of the words in the text, that can be inferred as a positive response from the listeners.
+</p>
 
 <hr>
-<br>
+
 
 <h2>Conclusion</h2>
 
-<br>
 
-<h3>
-This technical tutorial demonstrated reading textua content into R, data pre-processing and textual transformations. We created a word frequency table and generated a word cloud, for identifying prominent emotions conveyed through the PM's speech. Using correlation, words were associated to gain context around the sentiments. Four methods (syuzhet, bing, afinn and nrc) were implemented for computing sentiment scores, which were vital in assigning a numeric value to strength of the sentiments conveyed through the PM's speech, from which we inferrred an overall positive sentiment. Lastly, we implemented an emotion classification with NRC sentiment and visualized the same using bar plots for knowing what type of emotions and sentiments were conveyed by the prime minister during his speech. </h3>
+
+<p>
+This technical tutorial demonstrated reading textua content into R, data pre-processing and textual transformations. We created a word frequency table and generated a word cloud, for identifying prominent emotions conveyed through the PM's speech. Using correlation, words were associated to gain context around the sentiments. Four methods (syuzhet, bing, afinn and nrc) were implemented for computing sentiment scores, which were vital in assigning a numeric value to strength of the sentiments conveyed through the PM's speech, from which we inferrred an overall positive sentiment. Lastly, we implemented an emotion classification with NRC sentiment and visualized the same using bar plots for knowing what type of emotions and sentiments were conveyed by the prime minister during his speech. </p>
 
 <hr>
-<br>
+
 
 </body>
 </html>
